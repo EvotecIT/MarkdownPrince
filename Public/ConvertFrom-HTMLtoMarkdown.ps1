@@ -1,8 +1,8 @@
 ﻿function ConvertFrom-HTMLToMarkdown {
     [cmdletBinding()]
     param(
-        [string] $Path,
-        [string] $DestinationPath,
+        [Parameter(Mandatory)][string] $Path,
+        [Parameter(Mandatory)][string] $DestinationPath,
         [ReverseMarkdown.Config+UnknownTagsOption] $UnknownTags = [ReverseMarkdown.Config+UnknownTagsOption]::Drop,
         [switch] $GithubFlavored
     )
