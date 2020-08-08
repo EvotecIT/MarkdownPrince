@@ -9,23 +9,23 @@ $Configuration = @{
         LibrariesDefault  = 'Lib\Standard'
         Manifest          = @{
             # Minimum version of the Windows PowerShell engine required by this module
-            PowerShellVersion    = '5.1'
+            PowerShellVersion          = '5.1'
             # Supported PSEditions
-            CompatiblePSEditions = @('Desktop', 'Core')
+            CompatiblePSEditions       = @('Desktop', 'Core')
             # ID used to uniquely identify this module
-            GUID                 = 'c6547723-88bb-4644-a1cc-8dcd1ae4e0dc'
+            GUID                       = 'c6547723-88bb-4644-a1cc-8dcd1ae4e0dc'
             # Version number of this module.
-            ModuleVersion        = '0.0.X'
+            ModuleVersion              = '0.0.X'
             # Author of this module
-            Author               = 'Przemyslaw Klys'
+            Author                     = 'Przemyslaw Klys'
             # Company or vendor of this module
-            CompanyName          = 'Evotec'
+            CompanyName                = 'Evotec'
             # Copyright statement for this module
-            Copyright            = "(c) 2011 - $((Get-Date).Year) Przemyslaw Klys @ Evotec. All rights reserved."
+            Copyright                  = "(c) 2011 - $((Get-Date).Year) Przemyslaw Klys @ Evotec. All rights reserved."
             # Description of the functionality provided by this module
-            Description          = 'Little project to create'
+            Description                = 'Little project to work with Markdown files'
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags                 = @('macOS', 'linux', 'windows')
+            Tags                       = @('macOS', 'linux', 'windows')
             # A URL to the main website for this project.
             #ProjectUri           = 'https://github.com/EvotecIT/PSWritePDF'
 
@@ -33,7 +33,11 @@ $Configuration = @{
 
             #IconUri              = 'https://evotec.xyz/wp-content/uploads/2019/11/PSWritePDF.png'
 
-            RequiredModules      = @(
+            ExternalModuleDependencies = @(
+                'Microsoft.PowerShell.Utility'
+                'Microsoft.PowerShell.Management'
+            )
+            RequiredModules            = @(
                 @{ ModuleName = 'PSSharedGoods'; ModuleVersion = 'Latest'; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
             )
         }
