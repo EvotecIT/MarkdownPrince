@@ -25,21 +25,21 @@ $Configuration = @{
             # Description of the functionality provided by this module
             Description                = 'Little project to work with Markdown files'
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags                       = @('macOS', 'linux', 'windows')
+            Tags                       = @('macOS', 'linux', 'windows', 'markdown', 'html')
             # A URL to the main website for this project.
-            #ProjectUri           = 'https://github.com/EvotecIT/PSWritePDF'
+            ProjectUri                 = 'https://github.com/EvotecIT/MarkdownPrince'
 
-            #LicenseUri           = 'https://github.com/EvotecIT/PSWritePDF/blob/master/LICENSE'
+            LicenseUri                 = 'https://github.com/EvotecIT/MarkdownPrince/blob/master/LICENSE'
 
-            #IconUri              = 'https://evotec.xyz/wp-content/uploads/2019/11/PSWritePDF.png'
+            IconUri                    = 'https://evotec.xyz/wp-content/uploads/2020/08/MarkdownPrince.png'
 
             ExternalModuleDependencies = @(
                 'Microsoft.PowerShell.Utility'
                 'Microsoft.PowerShell.Management'
             )
-            RequiredModules            = @(
-                @{ ModuleName = 'PSSharedGoods'; ModuleVersion = 'Latest'; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
-            )
+            #RequiredModules            = @(
+            #    @{ ModuleName = 'PSSharedGoods'; ModuleVersion = 'Latest'; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
+            #)
         }
     }
     Options     = @{
