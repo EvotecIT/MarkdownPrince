@@ -7,7 +7,7 @@
     Description          = 'Little project to work with Markdown files'
     FunctionsToExport    = 'ConvertFrom-HTMLToMarkdown'
     GUID                 = 'c6547723-88bb-4644-a1cc-8dcd1ae4e0dc'
-    ModuleVersion        = '0.0.1'
+    ModuleVersion        = '0.0.2'
     PowerShellVersion    = '5.1'
     PrivateData          = @{
         PSData = @{
