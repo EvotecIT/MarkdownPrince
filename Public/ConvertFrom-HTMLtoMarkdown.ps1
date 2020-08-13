@@ -58,14 +58,14 @@
         [ReverseMarkdown.Config+UnknownTagsOption] $UnknownTags,
         [ValidateSet('-', '*')][string] $ListBulletChar,
         [string] $WhitelistUriSchemes,
+        [string] $DefaultCodeBlockLanguage,
         [ReverseMarkdown.Config+TableWithoutHeaderRowHandlingOption] $TableWithoutHeaderRowHandling,
         [switch] $RemoveComments,
         [switch] $SmartHrefHandling,
         [switch] $GithubFlavored
     )
     if ($Path -and (Test-Path -Path $Path)) {
-        $Content = Get-Content -Path $Path
-
+        $Content = Get-Content -Path $Path -Raw
         $Converter = [ReverseMarkdown.Converter]::new()
         if ($PSBoundParameters.ContainsKey('UnknownTags')) {
             $Converter.Config.UnknownTags = $UnknownTags
@@ -82,12 +82,16 @@
         if ($RemoveComments.IsPresent) {
             $Converter.Config.RemoveComments = $RemoveComments.IsPresent
         }
+        if ($PSBoundParameters.ContainsKey('DefaultCodeBlockLanguage')) {
+            $Converter.Config.DefaultCodeBlockLanguage = $DefaultCodeBlockLanguage
+        }
         if ($PSBoundParameters.ContainsKey('TableWithoutHeaderRowHandling')) {
             $Converter.Config.TableWithoutHeaderRowHandling = $TableWithoutHeaderRowHandling
         }
         if ($SmartHrefHandling.IsPresent) {
             $Converter.Config.SmartHrefHandling = $SmartHrefHandling.IsPresent
         }
+        $Converter.Config.DefaultCodeBlockLanguage = 'powershell'
         $ContentMD = $Converter.Convert($Content)
         $ContentMD | Out-File -FilePath $DestinationPath
     }
