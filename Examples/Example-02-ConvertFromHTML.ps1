@@ -11,7 +11,7 @@ New-HTML {
     New-HTMLTable -DataTable (Get-Process | Select-Object -First 5 -Property 'Id', 'Handles', 'CPU', 'SI', 'Name')
     New-HTMLText -Text 'This is some other text continuing'
     New-HTMLText -Text 'This is some other text'
-} -FilePath "$PSScriptRoot\Input\Example01.html"
+} -FilePath "$PSScriptRoot\Input\Example02.html"
 
 
-ConvertFrom-HTMLToMarkdown -Path $HTMLFile -UnknownTags Drop -GithubFlavored -DestinationPath $PSScriptRoot\Output\Example01.md
+ConvertFrom-HTMLToMarkdown -Path $HTMLFile -UnknownTags Drop -GithubFlavored -DestinationPath $PSScriptRoot\Output\Example02.md

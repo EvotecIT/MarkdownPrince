@@ -19,3 +19,45 @@
 </p>
 
 # MarkdownPrince - PowerShell Module
+
+**MarkdownPrince** is small **PowerShell** module that helps to **convert HTML files into Markdown**.
+
+## How to use
+
+```powershell
+ConvertFrom-HTMLToMarkdown -Path $HTMLFile -UnknownTags Drop -GithubFlavored -DestinationPath $DestinationPath
+```
+
+## To install
+
+```powershell
+Install-Module -Name MarkdownPrince -AllowClobber -Force
+```
+
+Force and AllowClobber aren't necessary, but they do skip errors in case some appear.
+
+## And to update
+
+```powershell
+Update-Module -Name MarkdownPrince
+```
+
+That's it. Whenever there's a new version, you run the command, and you can enjoy it. Remember that you may need to close, reopen PowerShell session if you have already used module before updating it.
+
+**The essential thing** is if something works for you on production, keep using it till you test the new version on a test computer. I do changes that may not be big, but big enough that auto-update may break your code. For example, small rename to a parameter and your code stops working! Be responsible!
+
+## Changelog
+
+- 0.0.2 - 14.08.2020
+  - Improvements
+- 0.0.1 - 8.08.2020
+  - First draft release
+
+## 3rd party libraries
+
+**MarkdownPrince** uses **3rd party libraries** to deliver it's functionality
+
+- [x] [ReverseMarkdown](https://github.com/mysticmind/reversemarkdown-net) (**MIT** License) - delivers conversion from **HTML** to **MARKDOWN**
+- [x] [Markdig](https://github.com/lunet-io/markdig) (**BSD-Clause 2** license) - delivers conversion from **MAKRDOWN** to **HTML** (**not functional yet!**)
+
+Without those projects MarkdownPrince would be small
