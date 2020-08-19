@@ -157,12 +157,12 @@ $Configuration = @{
             Verbose         = $false
         }
         PublishModule      = @{  # requires Enable to be on to process all of that
-            Enabled      = $true
+            Enabled      = $false
             Prerelease   = ''
             RequireForce = $false
-            GitHub       = $true
+            GitHub       = $false
         }
     }
 }
 
-New-PrepareModule -Configuration $Configuration -Verbose
+New-PrepareModule -Configuration $Configuration
