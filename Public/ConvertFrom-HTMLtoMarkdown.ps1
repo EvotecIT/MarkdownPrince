@@ -12,14 +12,20 @@
     .PARAMETER Path
     Path to HTML file
 
+    .PARAMETER Content
+    Content as given from variable
+
     .PARAMETER DestinationPath
-    Path where to save Markdown file
+    Path where to save Markdown file. If not given it will output to variable
 
     .PARAMETER UnknownTags
     PassThrough - Include the unknown tag completely into the result. That is, the tag along with the text will be left in output. This is the default
     Drop - Drop the unknown tag and its content
     Bypass - Ignore the unknown tag but try to convert its content
     Raise - Raise an error to let you know
+
+    .PARAMETER DefaultCodeBlockLanguage
+    Allows to define default language for code blocks
 
     .PARAMETER ListBulletChar
     Allows to change the bullet character. Default value is -. Some systems expect the bullet character to be * rather than -, this config allows to change it.
@@ -45,27 +51,65 @@
     .PARAMETER GithubFlavored
     Github style markdown for br, pre and table. Default is false
 
+    .PARAMETER RulesBefore
+    Replaces given rules with empty string
+
+    .PARAMETER Format
+    Tries to format markdown
+
     .EXAMPLE
     ConvertFrom-HTMLToMarkdown -Path  "$PSScriptRoot\Input\Example01.html" -UnknownTags Drop -GithubFlavored -DestinationPath $PSScriptRoot\Output\Example01.md
 
     .NOTES
     General notes
     #>
-    [cmdletBinding()]
+    [cmdletBinding(DefaultParameterSetName = 'FromPath')]
     param(
-        [Parameter(Mandatory)][string] $Path,
-        [Parameter(Mandatory)][string] $DestinationPath,
+        [Parameter(Mandatory, ParameterSetName = 'FromPath')][string] $Path,
+        [Parameter(Mandatory, ParameterSetName = 'FromContent')][string] $Content,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
+        [string] $DestinationPath,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
         [ReverseMarkdown.Config+UnknownTagsOption] $UnknownTags,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
         [ValidateSet('-', '*')][string] $ListBulletChar,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
         [string] $WhitelistUriSchemes,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
         [string] $DefaultCodeBlockLanguage,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
         [ReverseMarkdown.Config+TableWithoutHeaderRowHandlingOption] $TableWithoutHeaderRowHandling,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
         [switch] $RemoveComments,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
         [switch] $SmartHrefHandling,
-        [switch] $GithubFlavored
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
+        [switch] $GithubFlavored,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
+        [Array] $RulesBefore,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
+        [Array] $RulesAfter,
+        [Parameter(ParameterSetName = 'FromPath')]
+        [Parameter(ParameterSetName = 'FromContent')]
+        [switch] $Format
     )
-    if ($Path -and (Test-Path -Path $Path)) {
-        $Content = Get-Content -Path $Path -Raw
+    if ($Path) {
+        if ($Path -and (Test-Path -Path $Path)) {
+            $Content = Get-Content -Path $Path -Raw
+        }
+    }
+    if ($Content) {
         $Converter = [ReverseMarkdown.Converter]::new()
         if ($PSBoundParameters.ContainsKey('UnknownTags')) {
             $Converter.Config.UnknownTags = $UnknownTags
@@ -92,7 +136,27 @@
             $Converter.Config.SmartHrefHandling = $SmartHrefHandling.IsPresent
         }
         $Converter.Config.DefaultCodeBlockLanguage = 'powershell'
+
+        # Process replacement rules before
+        if ($RulesBefore) {
+            $Content = Remove-UnnessecaryContent -Content $Content -Rules $RulesBefore
+        }
+        # Do conversion
         $ContentMD = $Converter.Convert($Content)
-        $ContentMD | Out-File -FilePath $DestinationPath
+
+        # Process replacement rules after
+        if ($RulesAfter) {
+            $Content = Remove-UnnessecaryContent -Content $Content -Rules $RulesAfter
+        }
+
+        # This will try to format markdown removing blank lines and other stuff
+        if ($Format) {
+            $ContentMD = Format-MarkdownCode -ContentMarkdown $ContentMD
+        }
+        if ($DestinationPath) {
+            $ContentMD | Out-File -FilePath $DestinationPath
+        } else {
+            $ContentMD
+        }
     }
 }
