@@ -5,22 +5,54 @@
     )
     $SplitOverNewLines = $ContentMarkdown -split [Environment]::Newline
     $MyData = [System.Text.StringBuilder]::new()
-    $FirstCodeTag = $false
+    $EmptyLineLast = $false
+    $InsideCodeBlock = $false
     foreach ($N in $SplitOverNewLines) {
-        if ($N.Trim()) {
-            if ($N.Trim() -match '```') {
-                if ($FirstCodeTag -eq $true) {
+        $TrimmedLine = $N.Trim()
+        if ($TrimmedLine) {
+            if ($TrimmedLine -match '```') {
+                if ($InsideCodeBlock -eq $true) {
                     # this means we found closing tag so we need to add new line after
                     $null = $MyData.AppendLine($N)
                     $null = $MyData.AppendLine()
+                    $InsideCodeBlock = $false
+                    $EmptyLineLast = $true
                 } else {
                     # this means we found opening tag so we need to add new line before
-                    $FirstCodeTag = $true
-                    $null = $MyData.AppendLine()
+                    $InsideCodeBlock = $true
+                    if ($EmptyLineLast) {
+
+                    } else {
+                        $null = $MyData.AppendLine()
+                    }
                     $null = $MyData.AppendLine($N)
+                    $EmptyLineLast = $false
+                }
+            } elseif (($TrimmedLine.StartsWith('#') -or $TrimmedLine.StartsWith('![]'))) {
+                if ($InsideCodeBlock) {
+                    # we're inside of code block. we put things without new lines
+                    $null = $MyData.AppendLine($N.TrimEnd())
+                    $EmptyLineLast = $false
+                } else {
+                    if ($EmptyLineLast) {
+
+                    } else {
+                        $null = $MyData.AppendLine()
+                    }
+                    $null = $MyData.AppendLine($N.TrimEnd())
+                    $null = $MyData.AppendLine()
+                    $EmptyLineLast = $true
                 }
             } else {
-                $null = $MyData.AppendLine($N.TrimEnd())
+                if ($InsideCodeBlock) {
+                    # we're inside of code block. we put things without new lines
+                    $null = $MyData.AppendLine($N.TrimEnd())
+                    $EmptyLineLast = $false
+                } else {
+                    $null = $MyData.AppendLine($N.TrimEnd())
+                    $null = $MyData.AppendLine()
+                    $EmptyLineLast = $true
+                }
             }
         }
     }
