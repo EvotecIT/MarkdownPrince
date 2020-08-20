@@ -48,7 +48,10 @@ That's it. Whenever there's a new version, you run the command, and you can enjo
 
 ## Changelog
 
-- 0.0.3 - Unreleased
+- 0.0.4 - 20.08.2020
+  - `ConvertFrom-HTMLToMarkDown`
+    - Improvement
+- 0.0.3 - 20.08.2020
   - `ConvertFrom-HTMLToMarkDown`
     - Tries to format markdown a bit
     - Allows to remove text before and after

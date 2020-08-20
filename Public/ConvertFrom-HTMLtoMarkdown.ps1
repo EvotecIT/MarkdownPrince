@@ -146,7 +146,7 @@
 
         # Process replacement rules after
         if ($RulesAfter) {
-            $Content = Remove-UnnessecaryContent -Content $ContentMD -Rules $RulesAfter
+            $ContentMD = Remove-UnnessecaryContent -Content $ContentMD -Rules $RulesAfter
         }
 
         # This will try to format markdown removing blank lines and other stuff
