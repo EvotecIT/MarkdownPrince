@@ -135,8 +135,6 @@
         if ($SmartHrefHandling.IsPresent) {
             $Converter.Config.SmartHrefHandling = $SmartHrefHandling.IsPresent
         }
-        $Converter.Config.DefaultCodeBlockLanguage = 'powershell'
-
         # Process replacement rules before
         if ($RulesBefore) {
             $Content = Remove-UnnessecaryContent -Content $Content -Rules $RulesBefore
