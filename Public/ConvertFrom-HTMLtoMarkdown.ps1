@@ -54,6 +54,9 @@
     .PARAMETER RulesBefore
     Replaces given rules with empty string
 
+    .PARAMETER RulesAfter
+    Replaces given rules with empty string
+
     .PARAMETER Format
     Tries to format markdown
 
@@ -66,7 +69,7 @@
     [cmdletBinding(DefaultParameterSetName = 'FromPath')]
     param(
         [Parameter(Mandatory, ParameterSetName = 'FromPath')][string] $Path,
-        [Parameter(Mandatory, ParameterSetName = 'FromContent')][string] $Content,
+        [Parameter(Mandatory, ParameterSetName = 'FromContent', ValueFromPipeline, ValueFromPipelineByPropertyName)][string] $Content,
         [Parameter(ParameterSetName = 'FromPath')]
         [Parameter(ParameterSetName = 'FromContent')]
         [string] $DestinationPath,
@@ -104,57 +107,59 @@
         [Parameter(ParameterSetName = 'FromContent')]
         [switch] $Format
     )
-    if ($Path) {
-        if ($Path -and (Test-Path -Path $Path)) {
-            $Content = Get-Content -Path $Path -Raw
+    Process {
+        if ($Path) {
+            if ($Path -and (Test-Path -Path $Path)) {
+                $Content = Get-Content -Path $Path -Raw
+            }
         }
-    }
-    if ($Content) {
-        $Converter = [ReverseMarkdown.Converter]::new()
-        if ($PSBoundParameters.ContainsKey('UnknownTags')) {
-            $Converter.Config.UnknownTags = $UnknownTags
-        }
-        if ($GithubFlavored.IsPresent) {
-            $Converter.Config.GithubFlavored = $GithubFlavored.IsPresent
-        }
-        if ($PSBoundParameters.ContainsKey('ListBulletChar')) {
-            $Converter.Config.ListBulletChar = $ListBulletChar
-        }
-        if ($PSBoundParameters.ContainsKey('ListBulletChar')) {
-            $Converter.Config.ListBulletChar = $ListBulletChar
-        }
-        if ($RemoveComments.IsPresent) {
-            $Converter.Config.RemoveComments = $RemoveComments.IsPresent
-        }
-        if ($PSBoundParameters.ContainsKey('DefaultCodeBlockLanguage')) {
-            $Converter.Config.DefaultCodeBlockLanguage = $DefaultCodeBlockLanguage
-        }
-        if ($PSBoundParameters.ContainsKey('TableWithoutHeaderRowHandling')) {
-            $Converter.Config.TableWithoutHeaderRowHandling = $TableWithoutHeaderRowHandling
-        }
-        if ($SmartHrefHandling.IsPresent) {
-            $Converter.Config.SmartHrefHandling = $SmartHrefHandling.IsPresent
-        }
-        # Process replacement rules before
-        if ($RulesBefore) {
-            $Content = Remove-UnnessecaryContent -Content $Content -Rules $RulesBefore
-        }
-        # Do conversion
-        $ContentMD = $Converter.Convert($Content)
+        if ($Content) {
+            $Converter = [ReverseMarkdown.Converter]::new()
+            if ($PSBoundParameters.ContainsKey('UnknownTags')) {
+                $Converter.Config.UnknownTags = $UnknownTags
+            }
+            if ($GithubFlavored.IsPresent) {
+                $Converter.Config.GithubFlavored = $GithubFlavored.IsPresent
+            }
+            if ($PSBoundParameters.ContainsKey('ListBulletChar')) {
+                $Converter.Config.ListBulletChar = $ListBulletChar
+            }
+            if ($PSBoundParameters.ContainsKey('ListBulletChar')) {
+                $Converter.Config.ListBulletChar = $ListBulletChar
+            }
+            if ($RemoveComments.IsPresent) {
+                $Converter.Config.RemoveComments = $RemoveComments.IsPresent
+            }
+            if ($PSBoundParameters.ContainsKey('DefaultCodeBlockLanguage')) {
+                $Converter.Config.DefaultCodeBlockLanguage = $DefaultCodeBlockLanguage
+            }
+            if ($PSBoundParameters.ContainsKey('TableWithoutHeaderRowHandling')) {
+                $Converter.Config.TableWithoutHeaderRowHandling = $TableWithoutHeaderRowHandling
+            }
+            if ($SmartHrefHandling.IsPresent) {
+                $Converter.Config.SmartHrefHandling = $SmartHrefHandling.IsPresent
+            }
+            # Process replacement rules before
+            if ($RulesBefore) {
+                $Content = Remove-UnnessecaryContent -Content $Content -Rules $RulesBefore
+            }
+            # Do conversion
+            $ContentMD = $Converter.Convert($Content)
 
-        # Process replacement rules after
-        if ($RulesAfter) {
-            $ContentMD = Remove-UnnessecaryContent -Content $ContentMD -Rules $RulesAfter
-        }
+            # Process replacement rules after
+            if ($RulesAfter) {
+                $ContentMD = Remove-UnnessecaryContent -Content $ContentMD -Rules $RulesAfter
+            }
 
-        # This will try to format markdown removing blank lines and other stuff
-        if ($Format) {
-            $ContentMD = Format-MarkdownCode -ContentMarkdown $ContentMD
-        }
-        if ($DestinationPath) {
-            $ContentMD | Out-File -FilePath $DestinationPath
-        } else {
-            $ContentMD
+            # This will try to format markdown removing blank lines and other stuff
+            if ($Format) {
+                $ContentMD = Format-MarkdownCode -ContentMarkdown $ContentMD
+            }
+            if ($DestinationPath) {
+                $ContentMD | Out-File -FilePath $DestinationPath
+            } else {
+                $ContentMD
+            }
         }
     }
 }
