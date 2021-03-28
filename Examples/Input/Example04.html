@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]> <html lang="en-US" class="no-touch no-js ie7 ie full" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if IE 8]> <html lang="en-US" class="no-touch no-js ie8 ie full" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if IE 9]> <html lang="en-US" class="no-touch no-js no-ie ie9 full" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" class="no-ie no-touch no-js full">
+    <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <link rel="profile" href="https://gmpg.org/xfn/11" />
+        <link rel="pingback" href="https://evotec.xyz/xmlrpc.php" />
+        <link rel="shortcut icon" type="image/x-icon" href="https://evotec.xyz/wp-content/uploads/2015/05/EvotecFavicon.ico" />
+        <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <script>
+            var trackScrolling = !0,
+                trackScrollingPercentage = !1,
+                ScrollingPercentageNumber = 25,
+                stLogInterval = 1e4,
+                cutOffTime = 900,
+                trackNoEvents = !1,
+                trackNoMaxTime = !1,
+                docTitle = "Submitting blogs to web.archive.org using PowerShell";
+        </script>
+        <link rel="alternate" hreflang="en-us" href="https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/" />
+        <link rel="alternate" hreflang="pl-pl" href="https://evotec.pl/submitting-blogs-to-web-archive-org-using-powershell/" />
+        <title>Submitting blogs to web.archive.org using PowerShell - Evotec</title>
+        <meta name="description" content="Since my website went down in fire with OVH SBG2, I used this occasion to publish my restored website via Cloudflare. It allows me to have to cache, minimization, and some additional security. One thing that caught my attention while browsing through Cloudflare settings was the Always Online feature based on web.archive.org. Basically, the concept is - whenever the website is down, Cloudflare would go and fetch content from web.archive.org." />
+        <link rel="canonical" href="https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Submitting blogs to web.archive.org using PowerShell - Evotec" />
+        <meta property="og:description" content="Since my website went down in fire with OVH SBG2, I used this occasion to publish my restored website via Cloudflare. It allows me to have to cache, minimization, and some additional security. One thing that caught my attention while browsing through Cloudflare settings was the Always Online feature based on web.archive.org. Basically, the concept is - whenever the website is down, Cloudflare would go and fetch content from web.archive.org." />
+        <meta property="og:url" content="https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/" />
+        <meta property="og:site_name" content="Evotec" />
+        <meta property="article:publisher" content="https://www.facebook.com/evotecpl" />
+        <meta property="article:author" content="https://www.facebook.com/przemek.klys" />
+        <meta property="article:published_time" content="2021-03-19T13:23:11+00:00" />
+        <meta property="article:modified_time" content="2021-03-19T13:23:39+00:00" />
+        <meta property="og:image" content="https://evotec.xyz/wp-content/uploads/2021/03/img_605486ce30eff.png" />
+        <meta property="og:image:width" content="840" />
+        <meta property="og:image:height" content="794" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:creator" content="@PrzemyslawKlys" />
+        <meta name="twitter:site" content="@evotecpl" />
+        <meta name="twitter:label1" content="Written by" />
+        <meta name="twitter:data1" content="Przemyslaw Klys" />
+        <meta name="twitter:label2" content="Est. reading time" />
+        <meta name="twitter:data2" content="3 minutes" />
+        <script type="application/ld+json" class="yoast-schema-graph">
+            {
+                "@context":"https://schema.org",
+                "@graph":[
+                    {
+                        "@type":"Organization",
+                        "@id":"https://evotec.xyz/#organization",
+                        "name":"Evotec",
+                        "url":"https://evotec.xyz/",
+                        "sameAs":["https://www.facebook.com/evotecpl", "https://www.linkedin.com/company/evotec-poland", "https://www.youtube.com/c/EvotecPl", "https://twitter.com/evotecpl"],
+                        "logo":{
+                            "@type":"ImageObject",
+                            "@id":"https://evotec.xyz/#logo",
+                            "inLanguage":"en-US",
+                            "url":"https://evotec.xyz/wp-content/uploads/2015/05/Logo-evotec-012.png",
+                            "width":1675,
+                            "height":533,
+                            "caption":"Evotec"
+                        },
+                        "image":{
+                            "@id":"https://evotec.xyz/#logo"
+                        }
+                    },
+                    {
+                        "@type":"WebSite",
+                        "@id":"https://evotec.xyz/#website",
+                        "url":"https://evotec.xyz/",
+                        "name":"Evotec",
+                        "description":"Services for small, medium and large business",
+                        "publisher":{
+                            "@id":"https://evotec.xyz/#organization"
+                        },
+                        "potentialAction":[
+                            {
+                                "@type":"SearchAction",
+                                "target":"https://evotec.xyz/?s={search_term_string}",
+                                "query-input":"required name=search_term_string"
+                            }
+                        ],
+                        "inLanguage":"en-US"
+                    },
+                    {
+                        "@type":"ImageObject",
+                        "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#primaryimage",
+                        "inLanguage":"en-US",
+                        "url":"https://evotec.xyz/wp-content/uploads/2021/03/img_605486ce30eff.png",
+                        "width":840,
+                        "height":794,
+                        "caption":"Get-RSSFeed in action"
+                    },
+                    {
+                        "@type":"WebPage",
+                        "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#webpage",
+                        "url":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/",
+                        "name":"Submitting blogs to web.archive.org using PowerShell - Evotec",
+                        "isPartOf":{
+                            "@id":"https://evotec.xyz/#website"
+                        },
+                        "primaryImageOfPage":{
+                            "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#primaryimage"
+                        },
+                        "datePublished":"2021-03-19T13:23:11+00:00",
+                        "dateModified":"2021-03-19T13:23:39+00:00",
+                        "description":"Since my website went down in fire with OVH SBG2, I used this occasion to publish my restored website via Cloudflare. It allows me to have to cache, minimization, and some additional security. One thing that caught my attention while browsing through Cloudflare settings was the Always Online feature based on web.archive.org. Basically, the concept is - whenever the website is down, Cloudflare would go and fetch content from web.archive.org.",
+                        "breadcrumb":{
+                            "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#breadcrumb"
+                        },
+                        "inLanguage":"en-US",
+                        "potentialAction":[
+                            {
+                                "@type":"ReadAction",
+                                "target":["https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/"]
+                            }
+                        ]
+                    },
+                    {
+                        "@type":"BreadcrumbList",
+                        "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#breadcrumb",
+                        "itemListElement":[
+                            {
+                                "@type":"ListItem",
+                                "position":1,
+                                "item":{
+                                    "@type":"WebPage",
+                                    "@id":"https://evotec.xyz/",
+                                    "url":"https://evotec.xyz/",
+                                    "name":"Home"
+                                }
+                            },
+                            {
+                                "@type":"ListItem",
+                                "position":2,
+                                "item":{
+                                    "@type":"WebPage",
+                                    "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/",
+                                    "url":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/",
+                                    "name":"Submitting blogs to web.archive.org using PowerShell"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@type":"Article",
+                        "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#article",
+                        "isPartOf":{
+                            "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#webpage"
+                        },
+                        "author":{
+                            "@id":"https://evotec.xyz/#/schema/person/931a06dc5c97ea2523add5097c6b4d9e"
+                        },
+                        "headline":"Submitting blogs to web.archive.org using PowerShell",
+                        "datePublished":"2021-03-19T13:23:11+00:00",
+                        "dateModified":"2021-03-19T13:23:39+00:00",
+                        "mainEntityOfPage":{
+                            "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#webpage"
+                        },
+                        "publisher":{
+                            "@id":"https://evotec.xyz/#organization"
+                        },
+                        "image":{
+                            "@id":"https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#primaryimage"
+                        },
+                        "keywords":"archive,blogs,powershell,pswritecolor,rss,web.archive.org,write-color",
+                        "articleSection":"PowerShell",
+                        "inLanguage":"en-US"
+                    },
+                    {
+                        "@type":"Person",
+                        "@id":"https://evotec.xyz/#/schema/person/931a06dc5c97ea2523add5097c6b4d9e",
+                        "name":"Przemyslaw Klys",
+                        "description":"System Architect with over 14 years of experience in the IT field. Skilled, among others, in Active Directory, Microsoft Exchange and Office 365. Profoundly interested in PowerShell. Software geek.",
+                        "sameAs":["https://www.facebook.com/przemek.klys", "https://pl.linkedin.com/in/pklys", "https://twitter.com/PrzemyslawKlys"]
+                    }
+                ]
+            }
+        </script>
+        <link rel="amphtml" href="https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/amp/" />
+        <meta name="generator" content="AMP for WP 1.0.76.8" />
+        <link rel="dns-prefetch" href="//maps.googleapis.com" />
+        <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
+        <link rel="alternate" type="application/rss+xml" title="Evotec &raquo; Feed" href="https://evotec.xyz/feed/" />
+        <link rel="alternate" type="application/rss+xml" title="Evotec &raquo; Comments Feed" href="https://evotec.xyz/comments/feed/" />
+        <script>
+            var $TS_VCSC_CurrentPluginRelease = "5.6.0",
+                $TS_VCSC_CurrentComposerRelease = "6.6.0",
+                $TS_VCSC_Lightbox_Activated = !0,
+                $TS_VCSC_Lightbox_Thumbs = "bottom",
+                $TS_VCSC_Lightbox_Thumbsize = 50,
+                $TS_VCSC_Lightbox_Animation = "random",
+                $TS_VCSC_Lightbox_Captions = "data-title",
+                $TS_VCSC_Lightbox_Closer = !0,
+                $TS_VCSC_Lightbox_Durations = 5e3,
+                $TS_VCSC_Lightbox_Share = !1,
+                $TS_VCSC_Lightbox_Save = !1,
+                $TS_VCSC_Lightbox_LoadAPIs = !0,
+                $TS_VCSC_Lightbox_Social = "fb,tw,gp,pin",
+                $TS_VCSC_Lightbox_NoTouch = !1,
+                $TS_VCSC_Lightbox_BGClose = !0,
+                $TS_VCSC_Lightbox_NoHashes = !0,
+                $TS_VCSC_Lightbox_Keyboard = !0,
+                $TS_VCSC_Lightbox_FullScreen = !0,
+                $TS_VCSC_Lightbox_Zoom = !0,
+                $TS_VCSC_Lightbox_FXSpeed = 300,
+                $TS_VCSC_Lightbox_Scheme = "dark",
+                $TS_VCSC_Lightbox_Controls = "circle",
+                $TS_VCSC_Lightbox_URLColor = !1,
+                $TS_VCSC_Lightbox_Backlight = "#ffffff",
+                $TS_VCSC_Lightbox_UseColor = !1,
+                $TS_VCSC_Lightbox_Overlay = "#000000",
+                $TS_VCSC_Lightbox_Background = "",
+                $TS_VCSC_Lightbox_Repeat = "no-repeat",
+                $TS_VCSC_Lightbox_Noise = "",
+                $TS_VCSC_Lightbox_CORS = !1,
+                $TS_VCSC_Lightbox_Tapping = !0,
+                $TS_VCSC_Lightbox_ScrollBlock = "js",
+                $TS_VCSC_Lightbox_Protection = "none",
+                $TS_VCSC_Lightbox_HistoryClose = !1,
+                $TS_VCSC_Lightbox_CustomScroll = !0,
+                $TS_VCSC_Lightbox_HomeURL = "https://evotec.xyz",
+                $TS_VCSC_Lightbox_LastScroll = 0,
+                $TS_VCSC_Lightbox_Showing = !1,
+                $TS_VCSC_Lightbox_PrettyPhoto = !1,
+                $TS_VCSC_Lightbox_AttachAllOther = !1,
+                $TS_VCSC_Hammer_ReleaseNew = !0;
+        </script>
+        <script data-no-minify="1" src="https://evotec.xyz/wp-content/cache/busting/1/gtm-103edc339ed4ba47400598851b0e46a1.js" data-cfasync="false"></script>
+        <script data-cfasync="false">
+            var mi_version = "7.17.0",
+                mi_track_user = !0,
+                mi_no_track_reason = "",
+                disableStr = "ga-disable-UA-4997697-4";
+            function __gtagTrackerIsOptedOut() {
+                return document.cookie.indexOf(disableStr + "=true") > -1
+            }
+            __gtagTrackerIsOptedOut() && (window[disableStr] = !0);
+            function __gtagTrackerOptout() {
+                document.cookie = disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
+                window[disableStr] = !0
+            }
+            if ("undefined" == typeof gaOptout) {
+                function gaOptout() {
+                    __gtagTrackerOptout()
+                }
+            }
+            if (window.dataLayer = window.dataLayer || [], mi_track_user) {
+                function __gtagTracker() {
+                    dataLayer.push(arguments)
+                }
+                __gtagTracker("js", new Date);
+                __gtagTracker("set", { "developer_id.dZGIzZG": !0 });
+                __gtagTracker("config", "UA-4997697-4", {
+                    allow_anchor: !0,
+                    forceSSL: !0,
+                    link_attribution: !0,
+                    linker: { domains: ["evotec.pl"] },
+                    page_path: location.pathname + location.search + location.hash
+                });
+                window.gtag = __gtagTracker,
+                function() {
+                    var noopfn = function() {
+                            return null
+                        },
+                        newtracker = function() {
+                            return new Tracker
+                        },
+                        Tracker = function() {
+                            return null
+                        },
+                        p = Tracker.prototype;
+                    p.get = noopfn;
+                    p.set = noopfn;
+                    p.send = function() {
+                        var args = Array.prototype.slice.call(arguments);
+                        args.unshift("send");
+                        __gaTracker.apply(null, args)
+                    };
+                    var __gaTracker = function() {
+                            var len = arguments.length;
+                            if (len !== 0) {
+                                var f = arguments[len - 1];
+                                if (typeof f != "object" || f === null || typeof f.hitCallback != "function") {
+                                    if ("send" === arguments[0]) {
+                                        var hitConverted,
+                                            hitObject = !1,
+                                            action;
+                                        "event" === arguments[1] && "undefined" != typeof arguments[3] && (hitObject = {
+                                            eventAction: arguments[3],
+                                            eventCategory: arguments[2],
+                                            eventLabel: arguments[4],
+                                            value: arguments[5] ? arguments[5] : 1
+                                        });
+                                        typeof arguments[2] == "object" && (hitObject = arguments[2]);
+                                        typeof arguments[5] == "object" && Object.assign(hitObject, arguments[5]);
+                                        "undefined" != typeof arguments[1].hitType && (hitObject = arguments[1]);
+                                        hitObject && (action = "timing" === arguments[1].hitType ? "timing_complete" : hitObject.eventAction, hitConverted = mapArgs(hitObject), __gtagTracker("event", action, hitConverted))
+                                    }
+                                    return
+                                }
+                                function mapArgs(args) {
+                                    var gaKey,
+                                        hit = {  },
+                                    gaMap = {
+                                    eventCategory: "event_category",
+                                    eventAction: "event_action",
+                                    eventLabel: "event_label",
+                                    eventValue: "event_value",
+                                    nonInteraction: "non_interaction",
+                                    timingCategory: "event_category",
+                                    timingVar: "name",
+                                    timingValue: "value",
+                                    timingLabel: "event_label"
+                                };
+                            for (gaKey in gaMap)
+                                "undefined" != typeof args[gaKey] && (hit[gaMap[gaKey]] = args[gaKey]);
+                            return hit
+                        }
+                        try {
+                            f.hitCallback()
+                        }
+                        catch(ex) {}
+                    }
+                };
+            __gaTracker.create = newtracker;
+            __gaTracker.getByName = newtracker;
+            __gaTracker.getAll = function() {
+                return []
+            };
+            __gaTracker.remove = noopfn;
+            __gaTracker.loaded = !0;
+            window.__gaTracker = __gaTracker
+            }()
+            }
+            else
+            console.log(""),
+            function() {
+            function __gtagTracker() {
+                return null
+            }
+            window.__gtagTracker = __gtagTracker;
+            window.gtag = __gtagTracker
+            }();
+        </script>
+        <style>
+            img.wp-smiley, img.emoji {
+                display: inline !important;
+                border: none !important;
+                box-shadow: none !important;
+                height: 1em !important;
+                width: 1em !important;
+                margin: 0 .07em !important;
+                vertical-align: -.1em !important;
+                background: none !important;
+                padding: 0 !important
+            }
+        </style>
+        <link data-minify="1" rel="stylesheet" id="vc_extensions_cqbundle_adminicon-css" href="https://evotec.xyz/wp-content/cache/min/1/wp-content/plugins/vc-extensions-bundle/css/admin_icon.css?ver=1616254418" type="text/css" media="all" />
+        <link rel="stylesheet" id="wp-block-library-css" href="https://evotec.xyz/wp-includes/css/dist/block-library/style.min.css?ver=8dacfbb89544adb3b28f0cfd57ae7065" type="text/css" media="all" />
+        <link rel="stylesheet" id="wpml-legacy-dropdown-click-0-css" href="//evotec.xyz/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-dropdown-click/style.min.css?ver=1" type="text/css" media="all" />
+        <style id="wpml-legacy-dropdown-click-0-inline-css">
+            .wpml-ls-sidebars-rb_header_widget_2 {
+                background-color: #eee
+            }
+            .wpml-ls-sidebars-rb_header_widget_2, .wpml-ls-sidebars-rb_header_widget_2 .wpml-ls-sub-menu, .wpml-ls-sidebars-rb_header_widget_2 a {
+                border-color: #cdcdcd
+            }
+            .wpml-ls-sidebars-rb_header_widget_2 a {
+                color: #444;
+                background-color: #fff
+            }
+            .wpml-ls-sidebars-rb_header_widget_2 a:hover, .wpml-ls-sidebars-rb_header_widget_2 a:focus {
+                color: #000;
+                background-color: #eee
+            }
+            .wpml-ls-sidebars-rb_header_widget_2 .wpml-ls-current-language>a {
+                color: #444;
+                background-color: #fff
+            }
+            .wpml-ls-sidebars-rb_header_widget_2 .wpml-ls-current-language:hover>a, .wpml-ls-sidebars-rb_header_widget_2 .wpml-ls-current-language>a:focus {
+                color: #000;
+                background-color: #eee
+            }
+            .wpml-ls-statics-shortcode_actions {
+                background-color: #eee
+            }
+            .wpml-ls-statics-shortcode_actions, .wpml-ls-statics-shortcode_actions .wpml-ls-sub-menu, .wpml-ls-statics-shortcode_actions a {
+                border-color: #cdcdcd
+            }
+            .wpml-ls-statics-shortcode_actions a {
+                color: #444;
+                background-color: #fff
+            }
+            .wpml-ls-statics-shortcode_actions a:hover, .wpml-ls-statics-shortcode_actions a:focus {
+                color: #000;
+                background-color: #eee
+            }
+            .wpml-ls-statics-shortcode_actions .wpml-ls-current-language>a {
+                color: #444;
+                background-color: #fff
+            }
+            .wpml-ls-statics-shortcode_actions .wpml-ls-current-language:hover>a, .wpml-ls-statics-shortcode_actions .wpml-ls-current-language>a:focus {
+                color: #000;
+                background-color: #eee
+            }
+        </style>
+        <link rel="stylesheet" id="wpml-legacy-horizontal-list-0-css" href="//evotec.xyz/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-list-horizontal/style.min.css?ver=1" type="text/css" media="all" />
+        <style id="wpml-legacy-horizontal-list-0-inline-css">
+            .wpml-ls-statics-footer {
+                background-color: #fff
+            }
+            .wpml-ls-statics-footer, .wpml-ls-statics-footer .wpml-ls-sub-menu, .wpml-ls-statics-footer a {
+                border-color: #cdcdcd
+            }
+            .wpml-ls-statics-footer a {
+                color: #444;
+                background-color: #fff
+            }
+            .wpml-ls-statics-footer a:hover, .wpml-ls-statics-footer a:focus {
+                color: #000;
+                background-color: #eee
+            }
+            .wpml-ls-statics-footer .wpml-ls-current-language>a {
+                color: #444;
+                background-color: #fff
+            }
+            .wpml-ls-statics-footer .wpml-ls-current-language:hover>a, .wpml-ls-statics-footer .wpml-ls-current-language>a:focus {
+                color: #000;
+                background-color: #eee
+            }
+        </style>
+        <link data-minify="1" rel="stylesheet" id="cms-navigation-style-base-css" href="https://evotec.xyz/wp-content/cache/min/1/wp-content/plugins/wpml-cms-nav/res/css/cms-navigation-base.css?ver=1616254419" type="text/css" media="screen" />
+        <link data-minify="1" rel="stylesheet" id="cms-navigation-style-css" href="https://evotec.xyz/wp-content/cache/min/1/wp-content/plugins/wpml-cms-nav/res/css/cms-navigation.css?ver=1616254419" type="text/css" media="screen" />
+        <link data-minify="1" rel="stylesheet" id="bsf-Defaults-css" href="https://evotec.xyz/wp-content/cache/min/1/wp-content/uploads/smile_fonts/Defaults/Defaults.css?ver=1616254419" type="text/css" media="all" />
+        <link data-minify="1" rel="stylesheet" id="krown-style-parties-css" href="https://evotec.xyz/wp-content/cache/min/1/wp-content/themes/goodwork/css/third-parties.css?ver=1616254419" type="text/css" media="all" />
+        <link data-minify="1" rel="stylesheet" id="krown-style-css" href="https://evotec.xyz/wp-content/cache/min/1/wp-content/themes/goodwork-child/style.css?ver=1616254419" type="text/css" media="all" />
+        <style id="krown-style-inline-css">
+            h1, h2, h3, h4, h5, h6, .tp-caption {
+                font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif
+            }
+            body, .rbStats.pie h5, .rbStats.bars h5, .rbTwitter>a h5, .fancybox-title, .tp-caption>a, button, .woocommerce .buttons a {
+                font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif
+            }
+            .modern blockquote, .post blockquote, .rbTestimonial blockquote {
+                font-family: Cambria,Georgia,serif
+            }
+            html {
+                background-color: #f7f7f7 !important
+            }
+            body {
+                background: rgba(255,255,255,1)
+            }
+            i.i-medium, input[type="submit"]:hover, .no-touch .buttons a:hover, .no-touch .classic .pTitle:hover h2:before, .no-touch #comments-title:hover:after, .no-touch .rbAccordion.large>section>h4:hover:before, .no-touch .rbPosts.classic header:hover a:before, .rbPricingTable .featured header, .no-touch .rbTextIcon.large>a:hover>i, .no-touch .rbSocial.thumbnails ul li:hover, .no-touch .tagcloud>a:hover, .no-touch #footer1 input[type="submit"]:hover, .no-touch #footer1 .tagcloud>a:hover, .minimal-2 .tabs span, .no-touch .dark_menu #menu li ul li:hover>a, .no-touch #menu li>ul li:hover>a, .no-touch .complex .side .nav a:hover, .mejs-controls .mejs-time-rail .mejs-time-current, .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current, .mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-current, .no-touch #searchform .holder:hover .icon-search, .no-touch .rbButton.dark:hover, .rbButton.light, .no-touch input[type="submit"]:hover, .product .button.add_to_cart, .cart-contents:hover:before, .widget_price_filter .price_slider_amount .button:hover, .woocommerce .buttons a:hover, .woocommerce-pagination li a:hover, .product_list_widget .imgCover, .single-product .cart .button:hover, .product-quantity .button:hover, .single-product .cart input:hover, .product-quantity input:hover, .shop_table .product-remove a:hover, .checkout-button.button, .woocommerce button.button:hover, ul.products li .button:hover, .tp-caption.button_light>a, .tp-caption.button_dark>a:hover, .no-touch .blank .tparrows:hover:before, .main-btn:hover, .woocommerce button.button:hover, .woocommerce .button:hover, .no-touch .ignitiondeck.idc_lightbox .form-row.submit input[type="submit"]:hover, .video-embedded .mejs-overlay-play:hover .mejs-overlay-button, .no-touch .blank .tparrows.default:hover:before, .no-touch #searchform .holder:hover .krown-icon-search, .no-touch .rbTextIcon.one>a:hover>i {
+                background-color: #25cff9
+            }
+            .no-touch .modern .post:not(.opened)>a:hover .pTitle:before {
+                background-color: #25cff9
+            }
+            .no-touch a:hover, .no-touch #menu a:hover, .no-touch #pageTitle a:hover, .no-touch .tone #items a:hover h3, .tone #items a.iehover h3, .no-touch .classic .pTitle h2:hover, .no-touch .classic .meta a:hover, .no-touch #comments-title:hover, .no-touch #comments-title:hover:before, .no-touch .comment-reply-link:hover:before, .await, #comment-status p, .no-touch .rbAccordion.small>section>h4:hover, .no-touch .rbAccordion.small>section>h4:hover:before, .no-touch .rbAccordion.large>section>h4:hover, .no-touch .rbContactInfo ul li a:hover:before, .no-touch .rbContactInfo ul li a:hover, .errorMessage, .no-touch .rbCustomPosts a:hover h4, .no-touch .rbCustomPosts a:hover .comments i:before, .no-touch .rbPosts.classic header:hover h3, .no-touch .rbTextIcon>a:hover>h4, .no-touch .rbTextIcon.minimal>a:hover>i, .no-touch .rbTwitter li a:hover, .no-touch .rbTwitter .time:hover, .no-touch .rbTwitter>a:hover span, .no-touch .rbSocial.list li:hover:before, .no-touch .rbSocial.list li:hover a, .no-touch .rbSocial.icons li:hover:before, .no-touch .rbTabs .titles li a:hover, .no-touch .widget.email a:hover i, .no-touch .widget.phone a:hover i, .no-touch .widget_meta ul li a:hover:before, .no-touch .widget_meta ul li a:hover, .no-touch .widget_pages ul li a:hover, .no-touch .widget_categories ul li a:hover, .no-touch .widget_archive ul li a:hover, .no-touch .widget_recent_entries ul li a:hover, .no-touch .widget_recent_comments ul li a:hover, .no-touch .widget_rss ul li a:hover, #breadcrumb a:hover, #breadcrumb .icon-home:hover, .no-touch #menu>ul>li:hover>a, .no-touch .rbButton.light:hover, .woocommerce-pagination .next:hover, .woocommerce-pagination .prev:hover, p.out-of-stock, .tp-caption.button_light>a:hover, .id-level-title, .progress-percentage, .no-touch ul.products li:hover h3, .ul.products li.iehover h3, .no-touch .miniF .product-name a:hover, .no-touch .rbTextIcon.two>a:hover>i, #breadcrumb.woo a:first-child:hover:before {
+                color: #25cff9
+            }
+            .no-touch .modern .post:not(.opened)>a:hover .pTitle, .no-touch .morePosts:not(.nomore):hover span, .no-touch .morePosts:not(.nomore):hover span:before {
+                color: #25cff9
+            }
+            .ttwo #items .caption, .no-touch .anything.folio .arrow a:hover span, .minimal-1 .mainControls .m-timer, .no-touch .minimal-1 .mainControls .thumbNav li a:hover, .no-touch .minimal-1 .mainControls .arrow a:hover span, .no-touch .mejs-overlay:hover .mejs-overlay-button, .ch .hover, .no-touch .fancybox-nav span:hover, .no-touch .fancybox-close:hover, .ch .hover, .onsale, .blank .tp-bannertimer, .fancybox-thumb span, .product-video-container.hasvideo .id_thevideo:hover:after {
+                background-color: #25cff9;
+                background-color: rgba(37,207,249,.9)
+            }
+            .no-touch #menu>ul>li:hover>a, .no-touch .tone #items a:hover .caption, .tone #items a.iehover .caption, .no-touch #comments-title:hover:after, .contactErrorBorder, .no-touch .rbTextIcon.large:hover, .rbTabs .titles li.opened a, .widget_nav_menu .current-menu-item, .ui-slider-horizontal .ui-slider-handle:hover, .star-rating .star, .comment-form-rating a.star, .no-touch ul.products li:hover .caption, ul.products li.iehover .caption, .no-touch .rbTextIcon.one:hover {
+                border-color: #25cff9
+            }
+            .no-touch .morePosts:not(.nomore):hover, .no-touch .morePosts:not(.nomore):hover span {
+                border-color: #25cff9
+            }
+            @media all and (max-width: 940px) {
+                .no-touch #menu .responsive:hover {
+                    background: #25cff9
+                }
+                #menu li a:hover {
+                    color: #25cff9 !important
+                }
+            }
+            .page-template-template-news-modern-php #content {
+                overflow: visible
+            }
+            .page-template-template-news-modern-php #pageTitle {
+                padding-bottom: 70px
+            }
+            .page-template-template-news-modern-php #filter {
+                top: -58px
+            }
+            .pComments, .pType {
+                display: none
+            }
+            form.login input[type="submit"] {
+                display: block;
+                float: none
+            }
+            .checkout_coupon {
+                margin-top: 0
+            }
+            .woocommerce-checkout #content>.woocommerce>.woocommerce-info {
+                margin: 0 !important
+            }
+            form.checkout {
+                margin-top: 30px
+            }
+            .woocommerce-checkout #content>.woocommerce {
+                margin-top: -50px
+            }
+            @media all and (max-width: 940px) {
+                #lang_sel_click li {
+                    width: 100px !important
+                }
+            }
+            @media all and (min-width: 440px) and (max-width: 940px) {
+                #logo {
+                    padding-top: 67px !important
+                }
+            }
+            @media all and (max-width: 560px) {
+                .rev.fullwidth {
+                    margin-top: -80px !important
+                }
+            }
+            #logo img {
+                margin-bottom: -6px;
+                padding-top: 6px;
+                margin-top: -21px
+            }
+            .post .content .excerpt a {
+                text-decoration: underline;
+                color: #25cff9;
+                font-weight: bold !important
+            }
+            #content {
+                margin-top: 5px !important;
+                margin-bottom: -100px !important
+            }
+            #content>section, #content>div, #content>blockquote, #content>article, #content>article, #content>.title {
+                margin-bottom: 0
+            }
+            .post-type-archive-product #pageTitle {
+                display: none
+            }
+            .post-type-archive-product .woocommerce-info {
+                margin-top: 0 !important
+            }
+            .post-type-ticket-product #pageTitle {
+                display: none
+            }
+            .error404 #pageTitle {
+                display: none !important
+            }
+            .single-ticket #pageTitle {
+                display: none
+            }
+            .single-ticket #type {
+                display: none
+            }
+            .single-ticket .content .excerpt a {
+                text-decoration: none;
+                color: #acacac
+            }
+        </style>
+        <link rel="stylesheet" id="vc_font_awesome_5_shims-css" href="https://evotec.xyz/wp-content/plugins/js_composer/assets/lib/bower/font-awesome/css/v4-shims.min.css?ver=6.6.0" type="text/css" media="all" />
+        <link data-minify="1" rel="stylesheet" id="vc_font_awesome_5-css" href="https://evotec.xyz/wp-content/cache/min/1/wp-content/plugins/js_composer/assets/lib/bower/font-awesome/css/all.min.css?ver=1616254573" type="text/css" media="all" />
+        <script id="monsterinsights-frontend-script-js-extra">
+            var monsterinsights_frontend = {
+                js_events_tracking: "true",
+                download_extensions: "doc,pdf,ppt,zip,xls,rar,msi,7z,ps1,psm1,cmd,reg,docx,pptx,xlsx",
+                inbound_paths: "[]",
+                home_url: "https://evotec.xyz",
+                hash_tracking: "true",
+                ua: "UA-4997697-4"
+            };
+        </script>
+        <script src="https://evotec.xyz/wp-content/plugins/google-analytics-for-wordpress/assets/js/frontend-gtag.min.js?ver=7.17.0" id="monsterinsights-frontend-script-js"></script>
+        <script src="//evotec.xyz/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-dropdown-click/script.min.js?ver=1" id="wpml-legacy-dropdown-click-0-js"></script>
+        <script src="https://evotec.xyz/wp-includes/js/jquery/jquery.min.js?ver=3.5.1" id="jquery-core-js"></script>
+        <script src="https://evotec.xyz/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&#038;key=AIzaSyCD1lGKrLHixXDGgSAp31QW-7-L1yEIJI8&#038;ver=1" id="google-maps-js"></script>
+        <script id="wpml-xdomain-data-js-extra">
+            var wpml_xdomain_data = {
+                css_selector: "wpml-ls-item",
+                ajax_url: "https://evotec.xyz/wp-admin/admin-ajax.php",
+                current_lang: "en"
+            };
+        </script>
+        <script data-minify="1" src="https://evotec.xyz/wp-content/cache/min/1/wp-content/plugins/sitepress-multilingual-cms/res/js/xdomain-data.js?ver=1616254419" id="wpml-xdomain-data-js"></script>
+        <script src="https://evotec.xyz/wp-content/plugins/ts-visual-composer-extend/js/mootools.main.more.min.js?ver=1.6.0" id="ts-library-mootools-js"></script>
+        <link rel="https://api.w.org/" href="https://evotec.xyz/wp-json/" />
+        <link rel="alternate" type="application/json" href="https://evotec.xyz/wp-json/wp/v2/posts/16698" />
+        <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://evotec.xyz/xmlrpc.php?rsd" />
+        <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://evotec.xyz/wp-includes/wlwmanifest.xml" />
+        <link rel="shortlink" href="https://evotec.xyz/?p=16698" />
+        <link rel="shorturl" href="https://evo.yt/y70n" />
+        <meta name="generator" content="WPML ver:4.4.10 stt:1,42;" />
+        <style media="all">
+            .ts-fancy-list-wrapper li div {
+                font-size: 12px!important
+            }
+        </style>
+        <meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress." />
+        <style id="wp-custom-css">
+            body .ts-list-item .ts-list-item-content p {
+                margin-top: 0 !important
+            }
+        </style>
+        <noscript>
+            <style>
+                .wpb_animate_when_almost_visible {
+                    opacity: 1
+                }
+            </style>
+        </noscript>
+        <style id="ts-enlighterjs-custom-theme-css">
+            body ol.customEnlighterJS.hoverEnabled li:hover, body ul.customEnlighterJS.hoverEnabled li:hover {
+                background-color: #fffcd3
+            }
+            body ol.customEnlighterJS li.specialline {
+                background-color: #fdf5f0
+            }
+            body ol.customEnlighterJS, body ul.customEnlighterJS {
+                overflow: auto;
+                border: 1px solid #e0e0e0;
+                background-color: #f9f9f9
+            }
+            body ol.customEnlighterJS, body ol.customEnlighterJS li, body ul.customEnlighterJS, body ul.customEnlighterJS li {
+                font-family: Consolas,"Source Code Pro","Courier New",Monospace;
+                font-size: 11px;
+                color: #aaa
+            }
+            body ol.customEnlighterJS li, body ul.customEnlighterJS li {
+                border: 0;
+                background-color: #fff
+            }
+            body ol.customEnlighterJS li {
+                list-style: decimal outside;
+                border-left: 1px solid #e0e0e0
+            }
+            body .customEnlighterJS span {
+                font-family: Consolas,"Source Code Pro","Courier New",Monospace;
+                font-size: 12px;
+                line-height: 16px;
+                color: #000
+            }
+            body .customEnlighterJS .de1 {
+                color: #cf6a4c;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .de2 {
+                color: #cf6a4c;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .kw1 {
+                color: #286491;
+                background-color: rgba(255,255,255,0);
+                font-weight: bold
+            }
+            body .customEnlighterJS .kw2 {
+                color: #4da0d2;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .kw3 {
+                color: #458;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .kw4 {
+                color: #990073;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .co1 {
+                color: #99a;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .co2 {
+                color: #99a;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .st0 {
+                color: #d14;
+                background-color: rgba(255,255,255,0);
+                font-weight: bold
+            }
+            body .customEnlighterJS .st1 {
+                color: #d14;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .st2 {
+                color: #d14;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .nu0 {
+                color: #099;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .me0 {
+                color: #0086b3;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .me1 {
+                color: #0086b3;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .br0 {
+                color: #777;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .sy0 {
+                color: #777;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .es0 {
+                color: #777;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJS .re0 {
+                color: #009926;
+                background-color: rgba(255,255,255,0)
+            }
+            body .customEnlighterJSRawButton::AFTER {
+                content: 'Toggle RAW Code'
+            }
+            body .customEnlighterJSWrapper pre {
+                overflow: auto;
+                border: 1px solid #e0e0e0;
+                font-family: Consolas,"Source Code Pro","Courier New",Monospace;
+                font-size: 12px;
+                line-height: 18px;
+                color: #717171;
+                background-color: #fff
+            }
+            body .customEnlighterJSTabPane .pane {
+                padding: 0
+            }
+            body .customEnlighterJSTabPane .controls {
+                background-color: #f9f9f9;
+                border: 1px solid #e0e0e0;
+                border-bottom-width: 0;
+                padding: 5px
+            }
+            body .customEnlighterJSTabPane .controls ul {
+                list-style: none
+            }
+            body .customEnlighterJSTabPane .controls ul li {
+                font-family: Consolas,"Source Code Pro","Courier New",Monospace;
+                font-size: 12px;
+                color: #000;
+                background-color: #f9f9f9;
+                border: 1px solid #e0e0e0;
+                cursor: pointer
+            }
+            body .customEnlighterJSTabPane .controls li.selected {
+                color: #000;
+                background-color: #e5e5e5;
+                border-color: #c9c9c9
+            }
+            body .customEnlighterJSTabPane .controls li:hover {
+                color: #000;
+                background-color: #e5e5e5;
+                border-color: #c9c9c9
+            }
+        </style>
+    </head>
+    <body id="body" class="post-template-default single single-post postid-16698 single-format-standard no-sidebar rb_blog_widget_right wpb-js-composer js-comp-ver-6.6.0 vc_responsive">
+        <div class="wrapper clearfix tt">
+            <header id="mainHeader" class="f_height dark_menu logo_left">
+                <div id="logo" class="clearfix">
+                    <a href="https://evotec.xyz" style="width: 193px">
+                        <img class="default" src="/wp-content/uploads/2015/05/Logo-evotec-012.png" alt="Evotec" /> <img class="retina" src="/wp-content/uploads/2015/05/Logo-evotec-012.png" alt="Evotec" />
+                    </a>
+                </div>
+                <div id="headerWidgets" class="clearfix">
+                    <div class="left clearfix">
+                        <div id="custom_html-4" class="widget_text widget sidebox widget_custom_html">
+                            <h4 class="hidden">EN Analytics Cloudflare</h4>
+                            <div class="textwidget custom-html-widget">
+                                <script data-minify="1" defer src="https://evotec.xyz/wp-content/cache/min/1/beacon.min.js?ver=1616254419" data-cf-beacon='{"token": "7263cf1354ef46699ceca737e38e91fc"}'></script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right clearfix">
+                        <div id="text-9" class="widget sidebox widget_text">
+                            <h4 class="hidden">Social-Header EN</h4>
+                            <div class="textwidget">
+                                <div class="clearfix">
+                                    <section class="rbSocial clearfix notli icons">
+                                        <ul>
+                                            <li class="i-square krown-icon-twitter">
+                                                <a target="_blank" href="https://twitter.com/evotecpl" rel="noopener">https://twitter.com/evotecpl</a>
+                                            </li>
+                                            <li class="i-square krown-icon-facebook-squared">
+                                                <a target="_blank" href="https://www.facebook.com/evotecpl" rel="noopener">https://www.facebook.com/evotecpl</a>
+                                            </li>
+                                            <li class="i-square krown-icon-linkedin">
+                                                <a target="_blank" href="https://www.linkedin.com/company/evotec-poland" rel="noopener">https://www.linkedin.com/company/evotec-poland</a>
+                                            </li>
+                                            <li class="i-square krown-icon-gplus">
+                                                <a target="_blank" href="https://plus.google.com/+EvotecPl0" rel="noopener">https://plus.google.com/+EvotecPl0</a>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="icl_lang_sel_widget-3" class="widget sidebox widget_icl_lang_sel_widget">
+                            <div class="wpml-ls-sidebars-rb_header_widget_2 wpml-ls wpml-ls-legacy-dropdown-click js-wpml-ls-legacy-dropdown-click">
+                                <ul>
+                                    <li class="wpml-ls-slot-rb_header_widget_2 wpml-ls-item wpml-ls-item-en wpml-ls-current-language wpml-ls-first-item wpml-ls-item-legacy-dropdown-click">
+                                        <a href="#" class="js-wpml-ls-item-toggle wpml-ls-item-toggle">
+                                            <span class="wpml-ls-native">English</span>
+                                        </a>
+                                        <ul class="js-wpml-ls-sub-menu wpml-ls-sub-menu">
+                                            <li class="wpml-ls-slot-rb_header_widget_2 wpml-ls-item wpml-ls-item-pl wpml-ls-last-item">
+                                                <a href="https://evotec.pl/submitting-blogs-to-web-archive-org-using-powershell/" class="wpml-ls-link">
+                                                    <span class="wpml-ls-native" lang="pl">polski</span><span class="wpml-ls-display">
+                                                        <span class="wpml-ls-bracket"> (</span>Polish<span class="wpml-ls-bracket">)</span></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav id="menu" class="cartfalse">
+                    <p class="responsive">Navigation</p>
+                    <ul id="menu-main-menu" class="clearfix">
+                        <li id="menu-item-147" class="parent menu-item">
+                            <a href="https://evotec.xyz/">Start</a>
+                            <ul class="clearfix">
+                                <li id="menu-item-3373" class="menu-item">
+                                    <a href="https://evotec.xyz/start/about-us/">About Us</a>
+                                </li>
+                                <li id="menu-item-3374" class="menu-item">
+                                    <a href="https://evotec.xyz/start/our-team/">Our Team</a>
+                                </li>
+                                <li id="menu-item-4501" class="menu-item">
+                                    <a href="https://evotec.xyz/clients/">Clients</a>
+                                </li>
+                                <li id="menu-item-3375" class="menu-item">
+                                    <a href="https://evotec.xyz/start/testimonials/">Testimonials</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-4535" class="menu-item">
+                            <a href="https://evotec.xyz/company-news/">News</a>
+                        </li>
+                        <li id="menu-item-2205" class="parent menu-item">
+                            <a href="https://evotec.xyz/offer/">Offer</a>
+                            <ul class="clearfix">
+                                <li id="menu-item-34" class="menu-item">
+                                    <a href="https://evotec.xyz/offer/outsourcing-services/">Outsourcing Services</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-9373" class="menu-item">
+                            <a href="https://evotec.xyz/hub/">Technical HUB</a>
+                        </li>
+                        <li id="menu-item-2206" class="menu-item">
+                            <a href="https://evotec.xyz/contact/">Contact</a>
+                        </li>
+                    </ul>
+                    <form role="search" method="get" id="searchform" action="https://evotec.xyz/">
+                        <div>
+                            <input type="text" value="Search the site" name="s" id="s" />
+                            <div class="holder">
+                                <input type="submit" id="searchsubmit" value="Search" /><i class="krown-icon-search"></i>
+                            </div>
+                        </div>
+                    </form>
+                </nav>
+                <nav id="breadcrumb" itemprop="breadcrumb">
+                    <a href="https://evotec.xyz">
+                        <i class="krown-icon-home"></i>
+                    </a> <span>></span> <a href="https://evotec.xyz/category/powershell/" rel="category tag">PowerShell</a> <span>></span> Submitting blogs to web.archive.org using PowerShell
+                </nav>
+            </header>
+            <div id="pageTitle" class="clearfix">
+                <h2 class="title">Our Blog</h2>
+                <nav class="postsNav">
+                    <span class="prev">
+                        <a href="https://evotec.xyz/advanced-html-reporting-using-powershell/" rel="prev">Advanced HTML reporting using PowerShell</a>
+                    </span>
+                </nav>
+            </div>
+            <article id="content" class="clearfix">
+                <div class="postsContainer classic">
+                    <article id="post-16698" class="post clearfix post-16698 type-post status-publish format-standard hentry category-powershell tag-archive tag-blogs tag-powershell tag-pswritecolor tag-rss tag-web-archive-org tag-write-color">
+                        <a class="pTitle clearfix" href="https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/">
+                            <h2 class="icon-none">Submitting blogs to web.archive.org using PowerShell</h2>
+                        </a>
+                        <section class="content clearfix">
+                            <ul class="meta">
+                                <li class="date">
+                                    <i class="icon krown-icon-calendar-1"></i> <time pubdate datetime="2021-03-19T15:23:11+02:00">
+                                        <span class="p1">19th March 2021</span> <span class="pTime p2">19/03/21</span>
+                                    </time>
+                                </li>
+                                <li class="type">
+                                    <i class="icon krown-icon-tag"></i> <a href="">
+                                        <span>Standard</span>
+                                    </a>
+                                </li>
+                                <li class="comments">
+                                    <i class="icon krown-icon-comment-1"></i> <a href="https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/#comments">0</a>
+                                </li>
+                                <li class="author">
+                                    <i class="icon krown-icon-about_us"></i> Przemyslaw Klys
+                                </li>
+                            </ul>
+                            <div class="excerpt">
+                                <div class="clearfix row-fluid krown-column-row clearfix">
+                                    <div class="span12 krown-column-container clearfix column_container">
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p>
+                                                    Since my website went down in fire with <strong>OVH SBG2</strong>, I used this occasion to publish my restored website via <strong>Cloudflare</strong>. It allows me to have to cache, minimization, and some additional security. One thing that caught my attention while browsing through <strong>Cloudflare</strong> settings was the <strong>Always Online</strong> feature based on <strong>web.archive.org</strong>. Basically, the concept is – whenever the website is down, <strong>Cloudflare</strong> would go and fetch content from<strong> web.archive.org</strong>.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p id="EatISdu">
+                                                    <a href="https://evotec.xyz/wp-content/uploads/2021/03/img_60533f859c598.png">
+                                                        <img loading="lazy" class="alignnone wp-image-16703 size-full" src="https://evotec.xyz/wp-content/uploads/2021/03/img_60533f859c598.png" alt="" width="1042" height="307" srcset="https://evotec.xyz/wp-content/uploads/2021/03/img_60533f859c598.png 1042w, https://evotec.xyz/wp-content/uploads/2021/03/img_60533f859c598-300x88.png 300w, https://evotec.xyz/wp-content/uploads/2021/03/img_60533f859c598-1024x302.png 1024w, https://evotec.xyz/wp-content/uploads/2021/03/img_60533f859c598-768x226.png 768w" sizes="(max-width: 1042px) 100vw, 1042px" />
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p>
+                                                    While the feature is in beta, and I really hope it won't ever happen again that my website will go down for longer than a few minutes, I thought that it's worth enabling this feature as some of the content I host is the documentation for my open-source projects that can't be found anywhere else. The only thought I had, is now I need to make sure that <strong>web.archive.org</strong> actually has my website covered and updated. If you go to the website, you can tell archive.org to archive your link, but the problem is – it will only take that link and nothing else.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p id="iREgtjn">
+                                                    <a href="https://evotec.xyz/wp-content/uploads/2021/03/img_60538e4155123.png">
+                                                        <img loading="lazy" class="alignnone wp-image-16707 size-full" src="https://evotec.xyz/wp-content/uploads/2021/03/img_60538e4155123.png" alt="" width="982" height="744" srcset="https://evotec.xyz/wp-content/uploads/2021/03/img_60538e4155123.png 982w, https://evotec.xyz/wp-content/uploads/2021/03/img_60538e4155123-300x227.png 300w, https://evotec.xyz/wp-content/uploads/2021/03/img_60538e4155123-768x582.png 768w" sizes="(max-width: 982px) 100vw, 982px" />
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix row-fluid krown-column-row clearfix">
+                                    <div class="span12 krown-column-container clearfix column_container">
+                                        <div class="cq-hr cq-hr-rounded" data-bgcolor="#333333" data-fontcolor="#ffffff" data-shape="rounded" data-borderstyle="solid" data-bordercolor="#333" data-centerbordercolor="" data-leftcolor="" data-centercolor="" data-rightcolor="" data-elementwidth="100%" data-bordersize="1px" data-fontsize="1em" data-titleposition="50%" data-titlewidth="" data-borderradius="4px" data-padding="" data-fontfamily="" data-margin="">
+                                            <div class="cq-hr-icon-container">
+                                                <i class="cq-hr-symbol">Submitting all blogs to web.archive.org</i>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p>
+                                                    To make sure all my blogs will be added to <strong>WayBackMachine</strong> without me spending tons of time, I've written a short script that will help me do it. The <strong>hardest </strong>part is getting all the blogs from wy website. Fortunately, a while back, I wrote a <strong>PowerShell</strong> module called <a href="https://github.com/EvotecIT/PSWebToolbox">PSWebToolbox</a> that contains <strong>Get-RSSFeed</strong> cmdlet, which can scan <strong>RSS</strong> feed and get all blogs from any website.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div id="ts-enlighterjs-container-9612935" class="ts-enlighterjs-container-single-enabled" style="width: 100%; margin-top: 0; margin-bottom: 0" data-enlighter-doubleclick data-enlighter-windowbutton data-enlighter-windowtext="New Window" data-enlighter-rawbutton data-enlighter-rawtext="RAW Code" data-enlighter-infobutton="false" data-enlighter-infotext="EnlighterJS" data-enlighter-indent="2">
+                                            <pre id="ts-enlighterjs-pre-9612935" style="white-space: pre-wrap; height: 100%; margin: 0; padding: 0" data-enlighter-language="standard" data-enlighter-theme="enlighter" data-enlighter-group="" data-enlighter-title="" data-enlighter-linenumbers data-enlighter-lineoffset="1" data-enlighter-highlight="">'https://evotec.xyz/feed' | Get-RSSFeed -Count 12 -Verbose | Format-Table -AutoSize
+'https://evotec.xyz/feed' | Get-RSSFeed -Count 2</pre>
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p id="PyGSBxm">
+                                                    <a href="https://evotec.xyz/wp-content/uploads/2021/03/img_605486ce30eff.png">
+                                                        <img loading="lazy" class="alignnone wp-image-16713 size-full" src="https://evotec.xyz/wp-content/uploads/2021/03/img_605486ce30eff.png" alt="" width="840" height="794" srcset="https://evotec.xyz/wp-content/uploads/2021/03/img_605486ce30eff.png 840w, https://evotec.xyz/wp-content/uploads/2021/03/img_605486ce30eff-300x284.png 300w, https://evotec.xyz/wp-content/uploads/2021/03/img_605486ce30eff-768x726.png 768w" sizes="(max-width: 840px) 100vw, 840px" />
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p>
+                                                    Having <strong>PSWebToolbox</strong> with its <strong>Get-RSSFeed</strong> meant that I only need to submit the blogs using the <strong>Invoke-WebRequest</strong> cmdlet. <strong>Get-RSSFeed</strong> provides me titles, links, categories, and even descriptions. The script has basic error handling along with a fail-safe. If something fails (the archive.org website isn't the most responsive), the script will continue applying other blog posts. Once done, the script, when rerun, would push only missing links rather than starting from scratch.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div id="ts-enlighterjs-container-7743316" class="ts-enlighterjs-container-single-enabled" style="width: 100%; margin-top: 0; margin-bottom: 0" data-enlighter-doubleclick data-enlighter-windowbutton data-enlighter-windowtext="New Window" data-enlighter-rawbutton data-enlighter-rawtext="RAW Code" data-enlighter-infobutton="false" data-enlighter-infotext="EnlighterJS" data-enlighter-indent="2">
+                                            <pre id="ts-enlighterjs-pre-7743316" style="white-space: pre-wrap; height: 100%; margin: 0; padding: 0" data-enlighter-language="standard" data-enlighter-theme="enlighter" data-enlighter-group="" data-enlighter-title="" data-enlighter-linenumbers data-enlighter-lineoffset="1" data-enlighter-highlight="">$Blogs = Get-RSSFeed -Url 'https://evotec.xyz/feed/' -All
+if (-not $StatusBlogs) {
+    $StatusBlogs = [ordered] @{}
+}
+foreach ($Blog in $Blogs) {
+    if ($StatusBlogs[$Blog.Link] -eq $true) {
+        continue
+    }
+    Write-Color "[+] ", "Submiting blog ", $($Blog.Title), " ($($Blog.Link)) ", "published on ", $($Blog.PublishDate) -Color Yellow, White, Yellow, Cyan, White, Yellow, White, Red
+    try {
+        $Status = Invoke-WebRequest -Uri "https://web.archive.org/save/$($Blog.Link)" -ErrorAction Stop
+        if ($Status.StatusCode -eq 200) {
+            $StatusBlogs[$Blog.Link] = $true
+            Write-Color "[+] ", "Submiting blog succeeded ", $($Blog.Title), " ($($Blog.Link)) ", "published on ", $($Blog.PublishDate) -Color Yellow, White, Yellow, Green, White, Yellow, White, Red
+        } else {
+            $StatusBlogs[$Blog.Link] = $false
+            Write-Color "[-] ", "Submiting blog failed ", $($Blog.Title), " ($($Blog.Link)) ", "published on ", $($Blog.PublishDate) -Color Yellow, White, Yellow, Red, White, Yellow, White, Red
+        }
+    } catch {
+        $StatusBlogs[$Blog.Link] = $false
+        Write-Color "[-] ", "Submiting blog failed ", $($Blog.Title), " ($($Blog.Link)) ", "published on ", $($Blog.PublishDate), " with error: ", $($_.Exception.Message) -Color Yellow, White, Yellow, Red, White, Yellow, White, Red
+    }
+}</pre>
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p>
+                                                    You may have also noticed me using the <strong>Write-Color</strong> cmdlet, which simplifies colorful messages. It's not necessary and could be easily replaced by <strong>Write-Host</strong> or anything else. If you would like to have <strong>Write-Color</strong> at your disposal, you can install it from <strong>PowerShellGallery</strong> or get the sources from <a href="https://github.com/EvotecIT/PSWriteColor">GitHub</a>.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p id="ZoAByZd">
+                                                    <img loading="lazy" class="alignnone wp-image-16699 size-full" src="https://evotec.xyz/wp-content/uploads/2021/03/img_60532774b99f8.png" alt="Submitting blogs to WebArchive using PowerShell" width="1943" height="296" srcset="https://evotec.xyz/wp-content/uploads/2021/03/img_60532774b99f8.png 1943w, https://evotec.xyz/wp-content/uploads/2021/03/img_60532774b99f8-300x46.png 300w, https://evotec.xyz/wp-content/uploads/2021/03/img_60532774b99f8-1024x156.png 1024w, https://evotec.xyz/wp-content/uploads/2021/03/img_60532774b99f8-768x117.png 768w, https://evotec.xyz/wp-content/uploads/2021/03/img_60532774b99f8-1536x234.png 1536w" sizes="(max-width: 1943px) 100vw, 1943px" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix row-fluid krown-column-row clearfix">
+                                    <div class="span12 krown-column-container clearfix column_container">
+                                        <div class="cq-hr cq-hr-rounded" data-bgcolor="#333333" data-fontcolor="#ffffff" data-shape="rounded" data-borderstyle="solid" data-bordercolor="#333" data-centerbordercolor="" data-leftcolor="" data-centercolor="" data-rightcolor="" data-elementwidth="100%" data-bordersize="1px" data-fontsize="1em" data-titleposition="50%" data-titlewidth="" data-borderradius="4px" data-padding="" data-fontfamily="" data-margin="">
+                                            <div class="cq-hr-icon-container">
+                                                <i class="cq-hr-symbol">Required PowerShell Modules</i>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="wpb_wrapper">
+                                                <p>
+                                                    To install or update <strong>PowerShell</strong> modules required to get the above script up and running, you need to install the following <strong>PowerShell</strong> modules.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div id="ts-enlighterjs-container-1858552" class="ts-enlighterjs-container-single-enabled" style="width: 100%; margin-top: 0; margin-bottom: 0" data-enlighter-doubleclick data-enlighter-windowbutton data-enlighter-windowtext="New Window" data-enlighter-rawbutton data-enlighter-rawtext="RAW Code" data-enlighter-infobutton="false" data-enlighter-infotext="EnlighterJS" data-enlighter-indent="2">
+                                            <pre id="ts-enlighterjs-pre-1858552" style="white-space: pre-wrap; height: 100%; margin: 0; padding: 0" data-enlighter-language="standard" data-enlighter-theme="enlighter" data-enlighter-group="" data-enlighter-title="" data-enlighter-linenumbers data-enlighter-lineoffset="1" data-enlighter-highlight="">Install-Module PSWebToolbox
+Install-Module PSWriteColor</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><span class="meta-holder">
+                                <span class="meta-title">Tags:</span> <a href="https://evotec.xyz/tag/archive/" rel="tag">archive</a>, <a href="https://evotec.xyz/tag/blogs/" rel="tag">blogs</a>, <a href="https://evotec.xyz/tag/powershell/" rel="tag">powershell</a>, <a href="https://evotec.xyz/tag/pswritecolor/" rel="tag">pswritecolor</a>, <a href="https://evotec.xyz/tag/rss/" rel="tag">rss</a>, <a href="https://evotec.xyz/tag/web-archive-org/" rel="tag">web.archive.org</a>, <a href="https://evotec.xyz/tag/write-color/" rel="tag">write-color</a>
+                            </span>
+                        </section>
+                    </article>
+                </div>
+            </article>
+        </div>
+        <footer id="footer1" class="clearfix">
+            <div class="row-fluid">
+                <div class="column_container span3"></div>
+                <div class="column_container span3 clearfix"></div>
+                <div class="column_container span3 clearfix">
+                    <section id="text-13" class="widget widget_text clearfix">
+                        <div class="widget-title">
+                            <h5>IT &amp; Outsourcing</h5>
+                        </div>
+                        <div class="textwidget">
+                            <section class="rbContactInfo autop">
+                                <ul>
+                                    <li class="address">
+                                        Evotec 
+                                        <br />
+                                        ul. Francuska 96B/23 
+                                        <br />
+                                        Katowice, 40-507 
+                                        <br />
+                                        Poland
+                                    </li>
+                                    <li class="phone">+48 502 469 760</li>
+                                    <li class="email">
+                                        <a href="/cdn-cgi/l/email-protection#e3808c8d97828097a386958c978680cd938f">
+                                            <span class="__cf_email__" data-cfemail="0a6965647e6b697e4a6f7c657e6f69247a66">[email protected]</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+                    </section>
+                </div>
+                <div class="column_container span3"></div>
+            </div>
+        </footer>
+        <footer id="footer2" class="clearfix">
+            <div class="clearfix">
+                <div class="left clearfix">
+                    <div id="nav_menu-6" class="widget left widget_nav_menu">
+                        <span class="hidden">Copyright ENG</span>
+                        <div class="menu-footer-menu-container">
+                            <ul id="menu-footer-menu" class="menu">
+                                <li id="menu-item-3301" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-3301">
+                                    <a href="https://evotec.xyz/">Evotec @ 2011 – 2019</a>
+                                </li>
+                                <li id="menu-item-3300" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3300">
+                                    <a href="https://evotec.xyz/sitemap/">Sitemap</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="right clearfix">
+                    <div id="text-11" class="widget right widget_text">
+                        <span class="hidden">Social-Fooder EN</span> 
+                        <div class="textwidget">
+                            <div class="clearfix">
+                                <section class="rbSocial clearfix notli icons">
+                                    <ul>
+                                        <li class="i-square krown-icon-twitter">
+                                            <a target="_blank" href="https://twitter.com/evotecpl" rel="noopener">https://twitter.com/evotecpl</a>
+                                        </li>
+                                        <li class="i-square krown-icon-facebook-squared">
+                                            <a target="_blank" href="https://www.facebook.com/evotecpl" rel="noopener">https://www.facebook.com/evotecpl</a>
+                                        </li>
+                                        <li class="i-square krown-icon-linkedin">
+                                            <a target="_blank" href="https://www.linkedin.com/company/evotec-poland" rel="noopener">https://www.linkedin.com/company/evotec-poland</a>
+                                        </li>
+                                        <li class="i-square krown-icon-gplus">
+                                            <a target="_blank" href="https://plus.google.com/+EvotecPl0" rel="noopener">https://plus.google.com/+EvotecPl0</a>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div id="oldie">
+            <p>
+                This is a unique website which will require a more modern browser to work! <a href="https://www.google.com/chrome/" target="_blank">Please upgrade today!</a>
+            </p>
+        </div>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script type="text/html" id="wpb-modifications"></script>
+        <div class="wpml-ls-statics-footer wpml-ls wpml-ls-legacy-list-horizontal">
+            <ul>
+                <li class="wpml-ls-slot-footer wpml-ls-item wpml-ls-item-en wpml-ls-current-language wpml-ls-first-item wpml-ls-item-legacy-list-horizontal">
+                    <a href="https://evotec.xyz/submitting-blogs-to-web-archive-org-using-powershell/" class="wpml-ls-link">
+                        <span class="wpml-ls-native">English</span>
+                    </a>
+                </li>
+                <li class="wpml-ls-slot-footer wpml-ls-item wpml-ls-item-pl wpml-ls-last-item wpml-ls-item-legacy-list-horizontal">
+                    <a href="https://evotec.pl/submitting-blogs-to-web-archive-org-using-powershell/" class="wpml-ls-link">
+                        <span class="wpml-ls-native" lang="pl">polski</span><span class="wpml-ls-display">
+                            <span class="wpml-ls-bracket"> (</span>Polish<span class="wpml-ls-bracket">)</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <link data-minify="1" rel="stylesheet" id="vc-extensions-separator-style-css" href="https://evotec.xyz/wp-content/cache/min/1/wp-content/plugins/vc-extensions-bundle/separator/css/style.css?ver=1616254573" type="text/css" media="all" />
+        <link rel="stylesheet" id="ts-extend-enlighterjs-css" href="https://evotec.xyz/wp-content/plugins/ts-visual-composer-extend/css/mootools.enlighterjs.min.css?ver=8dacfbb89544adb3b28f0cfd57ae7065" type="text/css" media="all" />
+        <link rel="stylesheet" id="ts-extend-syntaxinit-css" href="https://evotec.xyz/wp-content/plugins/ts-visual-composer-extend/css/jquery.vcsc.syntaxinit.min.css?ver=8dacfbb89544adb3b28f0cfd57ae7065" type="text/css" media="all" />
+        <script src="https://evotec.xyz/wp-content/themes/goodwork/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+        <script src="https://evotec.xyz/wp-content/themes/goodwork/js/jquery.isotope.min.js" id="isotope-js"></script>
+        <script src="https://evotec.xyz/wp-includes/js/underscore.min.js?ver=1.8.3" id="underscore-js"></script>
+        <script id="wp-util-js-extra">
+            var _wpUtilSettings = { ajax: { url: "/wp-admin/admin-ajax.php" } };
+        </script>
+        <script src="https://evotec.xyz/wp-includes/js/wp-util.min.js?ver=8dacfbb89544adb3b28f0cfd57ae7065" id="wp-util-js"></script>
+        <script src="https://evotec.xyz/wp-includes/js/backbone.min.js?ver=1.4.0" id="backbone-js"></script>
+        <script id="mediaelement-core-js-before">
+            var mejsL10n = {
+                language: "en",
+                strings: {
+                    "mejs.download-file": "Download File",
+                    "mejs.install-flash": "You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https://get.adobe.com/flashplayer/",
+                    "mejs.fullscreen": "Fullscreen",
+                    "mejs.play": "Play",
+                    "mejs.pause": "Pause",
+                    "mejs.time-slider": "Time Slider",
+                    "mejs.time-help-text": "Use Left/Right Arrow keys to advance one second, Up/Down arrows to advance ten seconds.",
+                    "mejs.live-broadcast": "Live Broadcast",
+                    "mejs.volume-help-text": "Use Up/Down Arrow keys to increase or decrease volume.",
+                    "mejs.unmute": "Unmute",
+                    "mejs.mute": "Mute",
+                    "mejs.volume-slider": "Volume Slider",
+                    "mejs.video-player": "Video Player",
+                    "mejs.audio-player": "Audio Player",
+                    "mejs.captions-subtitles": "Captions/Subtitles",
+                    "mejs.captions-chapters": "Chapters",
+                    "mejs.none": "None",
+                    "mejs.afrikaans": "Afrikaans",
+                    "mejs.albanian": "Albanian",
+                    "mejs.arabic": "Arabic",
+                    "mejs.belarusian": "Belarusian",
+                    "mejs.bulgarian": "Bulgarian",
+                    "mejs.catalan": "Catalan",
+                    "mejs.chinese": "Chinese",
+                    "mejs.chinese-simplified": "Chinese (Simplified)",
+                    "mejs.chinese-traditional": "Chinese (Traditional)",
+                    "mejs.croatian": "Croatian",
+                    "mejs.czech": "Czech",
+                    "mejs.danish": "Danish",
+                    "mejs.dutch": "Dutch",
+                    "mejs.english": "English",
+                    "mejs.estonian": "Estonian",
+                    "mejs.filipino": "Filipino",
+                    "mejs.finnish": "Finnish",
+                    "mejs.french": "French",
+                    "mejs.galician": "Galician",
+                    "mejs.german": "German",
+                    "mejs.greek": "Greek",
+                    "mejs.haitian-creole": "Haitian Creole",
+                    "mejs.hebrew": "Hebrew",
+                    "mejs.hindi": "Hindi",
+                    "mejs.hungarian": "Hungarian",
+                    "mejs.icelandic": "Icelandic",
+                    "mejs.indonesian": "Indonesian",
+                    "mejs.irish": "Irish",
+                    "mejs.italian": "Italian",
+                    "mejs.japanese": "Japanese",
+                    "mejs.korean": "Korean",
+                    "mejs.latvian": "Latvian",
+                    "mejs.lithuanian": "Lithuanian",
+                    "mejs.macedonian": "Macedonian",
+                    "mejs.malay": "Malay",
+                    "mejs.maltese": "Maltese",
+                    "mejs.norwegian": "Norwegian",
+                    "mejs.persian": "Persian",
+                    "mejs.polish": "Polish",
+                    "mejs.portuguese": "Portuguese",
+                    "mejs.romanian": "Romanian",
+                    "mejs.russian": "Russian",
+                    "mejs.serbian": "Serbian",
+                    "mejs.slovak": "Slovak",
+                    "mejs.slovenian": "Slovenian",
+                    "mejs.spanish": "Spanish",
+                    "mejs.swahili": "Swahili",
+                    "mejs.swedish": "Swedish",
+                    "mejs.tagalog": "Tagalog",
+                    "mejs.thai": "Thai",
+                    "mejs.turkish": "Turkish",
+                    "mejs.ukrainian": "Ukrainian",
+                    "mejs.vietnamese": "Vietnamese",
+                    "mejs.welsh": "Welsh",
+                    "mejs.yiddish": "Yiddish"
+                }
+            };
+        </script>
+        <script src="https://evotec.xyz/wp-includes/js/mediaelement/mediaelement-and-player.min.js?ver=4.2.16" id="mediaelement-core-js"></script>
+        <script src="https://evotec.xyz/wp-includes/js/mediaelement/mediaelement-migrate.min.js?ver=8dacfbb89544adb3b28f0cfd57ae7065" id="mediaelement-migrate-js"></script>
+        <script id="mediaelement-js-extra">
+            var _wpmejsSettings = {
+                pluginPath: "/wp-includes/js/mediaelement/",
+                classPrefix: "mejs-",
+                stretching: "responsive"
+            };
+        </script>
+        <script src="https://evotec.xyz/wp-content/themes/goodwork/js/mejs-gw-playlist.min.js" id="wp-playlist-js"></script>
+        <script data-minify="1" src="https://evotec.xyz/wp-content/cache/min/1/wp-content/themes/goodwork/js/jquery.fancybox.pack.js?ver=1616254419" id="fancybox-js"></script>
+        <script src="https://evotec.xyz/wp-content/themes/goodwork/js/plugins.min.js" id="theme_plugins-js"></script>
+        <script id="theme_scripts-js-extra">
+            var themeObjects = {
+                base: "https://evotec.xyz/wp-content/themes/goodwork",
+                mainColor: "#25cff9",
+                secondColor: "#DBDBDB",
+                blogPage: "8",
+                commentProcess: "Processing your comment...",
+                commentError: "You might have left one of the fields blank, or be posting too quickly.",
+                commentSuccess: "Thanks for your response. Your comment will be published shortly after it'll be moderated.",
+                idText1: "FUNDED",
+                idText2: "RAISED",
+                idText3: "GOAL",
+                idText4: "PLEDGERS",
+                idText5: "END DATE",
+                idText6: "DAYS LEFT",
+                wooCommerce23: ""
+            };
+        </script>
+        <script src="https://evotec.xyz/wp-content/themes/goodwork/js/scripts.min.js" id="theme_scripts-js"></script>
+        <script src="https://evotec.xyz/wp-content/themes/goodwork/js/mediaelement-and-player.min.js" id="wp-mediaelement-js"></script>
+        <script src="https://evotec.xyz/wp-includes/js/comment-reply.min.js?ver=8dacfbb89544adb3b28f0cfd57ae7065" id="comment-reply-js"></script>
+        <script data-minify="1" src="https://evotec.xyz/wp-content/cache/min/1/wp-content/plugins/reduce-bounce-rate/js/ga4wpjs.js?ver=1616254419" id="rbr_scripts-js"></script>
+        <script src="https://evotec.xyz/wp-content/plugins/vc-extensions-bundle/separator/js/init.min.js?ver=8dacfbb89544adb3b28f0cfd57ae7065" id="vc-extensions-separator-script-js"></script>
+        <script src="https://evotec.xyz/wp-content/plugins/ts-visual-composer-extend/js/mootools.enlighterjs.min.js?ver=8dacfbb89544adb3b28f0cfd57ae7065" id="ts-extend-enlighterjs-js"></script>
+        <script src="https://evotec.xyz/wp-content/plugins/ts-visual-composer-extend/js/jquery.vcsc.syntaxinit.min.js?ver=8dacfbb89544adb3b28f0cfd57ae7065" id="ts-extend-syntaxinit-js"></script>
+    </body>
+</html>
