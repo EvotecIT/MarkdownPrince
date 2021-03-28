@@ -6,9 +6,9 @@
     CompatiblePSEditions = @('Desktop', 'Core')
     Copyright            = '(c) 2011 - 2021 Przemyslaw Klys @ Evotec. All rights reserved.'
     Description          = 'Little project to work with Markdown files'
-    FunctionsToExport    = @('ConvertFrom-HTMLToMarkdown', 'ConvertTo-MarkdownFromHTML')
+    FunctionsToExport    = @('ConvertFrom-HTMLToMarkdown', 'ConvertTo-HTMLFromMarkdown')
     GUID                 = 'c6547723-88bb-4644-a1cc-8dcd1ae4e0dc'
-    ModuleVersion        = '0.0.7'
+    ModuleVersion        = '0.0.8'
     PowerShellVersion    = '5.1'
     PrivateData          = @{
         PSData = @{
