@@ -48,6 +48,9 @@ That's it. Whenever there's a new version, you run the command, and you can enjo
 
 ## Changelog
 
+- 0.0.8 - 2021.03.28
+  - [x] Renamed cmdlet `ConvertTo-HTMLFromMarkdown` (still not functional tho)
+  - [x] Updated library `ReverseMarkdown` to `3.19.0`
 - 0.0.7 - 07.02.2021
   - Updated ReverseMarkdown.dll
 - 0.0.6 - 21.08.2020
