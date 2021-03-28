@@ -5,7 +5,7 @@ $BlogContent = Invoke-WebRequest -Uri 'https://evotec.xyz/submitting-blogs-to-we
 $BlogContent.Content | Out-File -FilePath $PSScriptRoot\Input\Example04.html
 
 # Use PSParseHTML to format HTML so we can easier see what to remove
-Format-HTML -File $PSScriptRoot\Input\Example04.html -OutputFile $PSScriptRoot\Input\Example04.html
+#Format-HTML -File $PSScriptRoot\Input\Example04.html -OutputFile $PSScriptRoot\Input\Example04.html
 
 $RulesBefore = @(
     '(?ms)<div id="logo" class="clearfix">(.*?)<\/div>'
@@ -23,14 +23,19 @@ $RulesBefore = @(
     '(?ms)<footer id="footer1" class="clearfix">(.*?)<\/footer>'
     '(?ms)<footer id="footer2" class="clearfix">(.*?)<\/footer>'
     '(?ms)<pre class="hidden">(.*?)</pre>'
-    '(?ms)<script id="wp-util-js-extra">(.*?)<\/script>'
+    # remove tags
+    '(?ms)<span class="meta-holder">(.*)<\/span>'
+    # we shouldn't have to play with script at all but seems to be a bug in reversemarkdown library
+    "(?ms)<script type='text/javascript' id='wp-util-js-extra'>(.*)<\/script>"
+    '(?ms)<script id="wp-util-js-extra">(.*)<\/script>'
 )
 $RulesAfter = @(
     '<br>'
 )
 
 $Splat = @{
-    Content                  = $BlogContent.Content
+    #Content                  = $BlogContent.Content
+    Path                     = "$PSScriptRoot\Input\Example04.html"
     DestinationPath          = "$PSScriptRoot\Output\Example04.md"
     UnknownTags              = 'Bypass'
     GithubFlavored           = $true
@@ -39,6 +44,6 @@ $Splat = @{
     RulesBefore              = $RulesBefore
     RulesAfter               = $RulesAfter
     DefaultCodeBlockLanguage = 'powershell'
-    Format                   = $true
+    Format                   = $false
 }
 ConvertFrom-HTMLToMarkdown @Splat
