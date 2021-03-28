@@ -3,7 +3,7 @@
 $InputFile = "$PSScriptRoot\Input\Example03.md"
 $OutputFile = "$PSScriptRoot\Output\Example03.html"
 
-ConvertTo-MarkdownFromHTML -Path $InputFile -DestinationPath $OutputFile
+ConvertTo-HTMLFromMarkdown -Path $InputFile -DestinationPath $OutputFile
 
 
 
