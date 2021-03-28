@@ -1,4 +1,4 @@
-﻿function ConvertTo-MarkdownFromHTML {
+﻿function ConvertTo-HTMLFromMarkdown {
     [cmdletBinding()]
     param(
         [string] $Path,
