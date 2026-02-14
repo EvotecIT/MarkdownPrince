@@ -1,7 +1,7 @@
 ﻿<p align="center">
   <a href="https://dev.azure.com/evotecpl/MarkdownPrince/_build/latest?definitionId=3"><img src="https://dev.azure.com/evotecpl/MarkdownPrince/_apis/build/status/EvotecIT.MarkdownPrince"></a>
   <a href="https://www.powershellgallery.com/packages/MarkdownPrince"><img src="https://img.shields.io/powershellgallery/v/MarkdownPrince.svg"></a>
-  <a href="https://www.powershellgallery.com/packages/MarkdownPrince"><img src="https://img.shields.io/powershellgallery/vpre/MarkdownPrince.svg?label=powershell%20gallery%20preview&colorB=yellow"></a>
+  <a href="https://www.powershellgallery.com/packages/MarkdownPrince"><img src="https://img.shields.io/powershellgallery/v/MarkdownPrince.svg?label=powershell%20gallery%20preview&colorB=yellow&include_prereleases"></a>
   <a href="https://github.com/EvotecIT/MarkdownPrince"><img src="https://img.shields.io/github/license/EvotecIT/MarkdownPrince.svg"></a>
 </p>
 
